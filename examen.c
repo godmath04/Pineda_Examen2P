@@ -35,8 +35,6 @@ void notasProgreso(int progreso, int alumnos, int notas, int MatrizCalificacione
 
 void PromedioCalificaciones(int progreso, int alumnos, int notas, int MatrizCalificaciones[progreso][alumnos][notas])
 {
-
-    notasProgreso(progreso, alumnos, notas, MatrizCalificaciones);
     // SUMA DE NOTAS POR CADA PROGRESO
     for (int k = 0; k < progreso; k++)
     {
@@ -50,7 +48,7 @@ void PromedioCalificaciones(int progreso, int alumnos, int notas, int MatrizCali
 
                 suma = suma + MatrizCalificaciones[k][i][j];
             }
-            float promedio = (float )suma / notas;
+            float promedio = (float)suma / notas;
 
             printf("Alumno: %d\t su promedio es: %f\n", i + 1, promedio);
             printf("\n");
@@ -58,13 +56,38 @@ void PromedioCalificaciones(int progreso, int alumnos, int notas, int MatrizCali
     }
 }
 
+void promedioGrupo(int progreso, int alumnos, int notas, int MatrizCalificaciones[progreso][alumnos][notas])
+{
+    int sumafilas = 0, sumacolumnas = 0;
+
+    for (int k = 0; k < progreso; k++)
+    {
+        printf("***PROGRESO %d:\n", k + 1);
+        sumacolumnas = 0;
+        for (int i = 0; i < alumnos; i++)
+        {
+            sumafilas = 0;
+            for (int j = 0; j < notas; j++)
+            {
+
+                sumafilas = sumafilas + MatrizCalificaciones[k][i][j];
+            }
+            sumacolumnas = sumacolumnas + sumafilas;
+        }
+        float promediocurso = (float)sumacolumnas / (alumnos*notas);
+        printf("Progreso %d\t su promedio es: %f\n", k + 1, promediocurso);
+        printf("\n");
+    }
+}
+
 int main(int argc, char const *argv[])
 {
 
     printf("***** NOTAS DE LA CARRERA DE ING.*****\n");
-    int alumnos = 3, progreso = 1, notas = 5;
+    const int alumnos = 3, progreso = 1, notas = 5;
     int MatrizNotas[progreso][alumnos][notas];
+    notasProgreso(progreso, alumnos, notas, MatrizNotas);
     PromedioCalificaciones(progreso, alumnos, notas, MatrizNotas);
-
+    promedioGrupo(progreso, alumnos, notas, MatrizNotas);
     return 0;
 }
