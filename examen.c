@@ -13,6 +13,7 @@ LA NOTA SERA SOBRE 0- 100 PUNTOS Y CADA ALUMNO TEDRÁ 5 NOTAS PARA LUEGO OBTENER
 #include <time.h>
 
 // Creo una matriz 3D para que la profundidad indique el progreso, la fila los alumnos y la columna las notas
+// GENERO LAS NOTAS ALEATORIAMENTE
 void notasProgreso(int progreso, int alumnos, int notas, int MatrizCalificaciones[progreso][alumnos][notas])
 {
     for (int k = 0; k < progreso; k++)
@@ -33,6 +34,8 @@ void notasProgreso(int progreso, int alumnos, int notas, int MatrizCalificacione
     }
 }
 
+
+// FUNCION PROMEDIO Y APROVECHO PARA OBTENER EL ALUMNO CON LA MAYOR NOTA
 void PromedioCalificaciones(int progreso, int alumnos, int notas, int MatrizCalificaciones[progreso][alumnos][notas])
 {
     // SUMA DE NOTAS POR CADA PROGRESO Y ALUMNO CON LA MEJOR NOTA
@@ -61,14 +64,15 @@ void PromedioCalificaciones(int progreso, int alumnos, int notas, int MatrizCali
             if (promedio > mejorNota)
             {
                 mejorNota = promedio;
-                mejorAlumno = i + 1;
+                mejorAlumno = i+1;
             }
             
         }
-        printf("El alumno con la mejora nota tiene %f\n", mejorNota);
+        printf("El alumno con la mejora es %d y tiene nota  %f\n",mejorAlumno, mejorNota);
     }
 }
 
+// FUNCION PARA OBBTENER EL PROMEDIO DE FORMA GRUPAL
 void promedioGrupo(int progreso, int alumnos, int notas, int MatrizCalificaciones[progreso][alumnos][notas])
 {
     int sumafilas = 0, sumacolumnas = 0;
@@ -93,19 +97,17 @@ void promedioGrupo(int progreso, int alumnos, int notas, int MatrizCalificacione
     }
 }
 
-void mejornotaAlumno(int progreso, int alumnos, int notas, int MatrizCalificaciones[progreso][alumnos][notas])
-{
-}
-
 int main(int argc, char const *argv[])
 {
 
     printf("***** NOTAS DE LA CARRERA DE ING.*****\n");
-    const int alumnos = 3, progreso = 1, notas = 5;
+    const int alumnos = 23, progreso = 3, notas = 5;
     int MatrizNotas[progreso][alumnos][notas];
+    
     notasProgreso(progreso, alumnos, notas, MatrizNotas);
     printf("\n");
     PromedioCalificaciones(progreso, alumnos, notas, MatrizNotas);
+    printf("\n");
     promedioGrupo(progreso, alumnos, notas, MatrizNotas);
     return 0;
 }
