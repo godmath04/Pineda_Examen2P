@@ -8,34 +8,39 @@ Cada semestre, a la materia de Programación se inscriben una cantidad constante
 /* CONSIDERACIONES PERSONALES ---  LA GENERACION DE NOTAS SERA ALEATORIA
 LA NOTA SERA SOBRE 100 PUNTOS Y CADA ALUMNO TEDRÁ 5 NOTAS PARA LUEGO OBTENER SU PROMEDIO*/
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 // Variables globales de entrada que se mantienen en todo el código
-int alumnos = 23, progreso = 3, notas = 5;
 
-//Creo una matriz 3D para que la profundidad indique el progreso, la fila los alumnos y la columna las notas
-void notasProgreso(int alumnos, int notas, int MatrizCalificaciones[progreso][alumnos][notas]){
+// Creo una matriz 3D para que la profundidad indique el progreso, la fila los alumnos y la columna las notas
+void notasProgreso(int progreso, int alumnos, int notas, int MatrizCalificaciones[progreso][alumnos][notas])
+{
     for (int k = 0; k < progreso; k++)
     {
+
         for (int i = 0; i < alumnos; i++)
         {
+            printf("Alumno %d:\t", i + 1);
             for (int j = 0; j < notas; j++)
             {
                 MatrizCalificaciones[k][i][j] = rand() % 100 + 1;
-                printf("%4d\t|", MatrizCalificaciones[k][i][j])
+                printf("%6d\t|", MatrizCalificaciones[k][i][j]);
             }
             printf("\n");
         }
         printf("\n");
     }
-    
 }
 
 int main(int argc, char const *argv[])
 {
+
     printf("***** NOTAS DE LA CARRERA DE ING.*****\n");
-    scanf("Ingrese")
+    int alumnos = 23, progreso = 3, notas = 5;
+    int MatrizNotas[progreso][alumnos][notas];
+    notasProgreso(progreso, alumnos, notas, MatrizNotas);
+
     return 0;
 }
