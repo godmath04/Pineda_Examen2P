@@ -35,7 +35,11 @@ void notasProgreso(int progreso, int alumnos, int notas, int MatrizCalificacione
 
 void PromedioCalificaciones(int progreso, int alumnos, int notas, int MatrizCalificaciones[progreso][alumnos][notas])
 {
-    // SUMA DE NOTAS POR CADA PROGRESO
+    // SUMA DE NOTAS POR CADA PROGRESO Y ALUMNO CON LA MEJOR NOTA
+    // ARREGLO PARA UBICAR LA MEJOR NOTA
+    int mejorAlumno = -1,i;
+    float mejorNota = -1.00;
+
     for (int k = 0; k < progreso; k++)
     {
         printf("***PROGRESO %d:\n", k + 1);
@@ -52,7 +56,16 @@ void PromedioCalificaciones(int progreso, int alumnos, int notas, int MatrizCali
 
             printf("Alumno: %d\t su promedio es: %f\n", i + 1, promedio);
             printf("\n");
-        };
+
+            // VERIFICACIÓN DE LA MEJOR NOTA
+            if (promedio > mejorNota)
+            {
+                mejorNota = promedio;
+                mejorAlumno = i + 1;
+            }
+            
+        }
+        printf("El alumno con la mejora nota tiene %f\n", mejorNota);
     }
 }
 
@@ -74,10 +87,14 @@ void promedioGrupo(int progreso, int alumnos, int notas, int MatrizCalificacione
             }
             sumacolumnas = sumacolumnas + sumafilas;
         }
-        float promediocurso = (float)sumacolumnas / (alumnos*notas);
-        printf("Progreso %d\t su promedio es: %f\n", k + 1, promediocurso);
+        float promediocurso = (float)sumacolumnas / (alumnos * notas);
+        printf("En el Progreso %d\t el promedio del curso es: %f\n", k + 1, promediocurso);
         printf("\n");
     }
+}
+
+void mejornotaAlumno(int progreso, int alumnos, int notas, int MatrizCalificaciones[progreso][alumnos][notas])
+{
 }
 
 int main(int argc, char const *argv[])
@@ -87,6 +104,7 @@ int main(int argc, char const *argv[])
     const int alumnos = 3, progreso = 1, notas = 5;
     int MatrizNotas[progreso][alumnos][notas];
     notasProgreso(progreso, alumnos, notas, MatrizNotas);
+    printf("\n");
     PromedioCalificaciones(progreso, alumnos, notas, MatrizNotas);
     promedioGrupo(progreso, alumnos, notas, MatrizNotas);
     return 0;
